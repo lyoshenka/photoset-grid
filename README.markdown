@@ -47,6 +47,7 @@ Beyond the basic usage, you can set a number of optional arguments including cal
 - `width` - `string` Change the width that the photo set grid will be rendered at. Default: `100%` *automatically fits its container for responsive layouts*
 - `layout` - `string` Manually set a string of numbers to specify the number of images each row contains. Default: `null` *generates a stacked layout of one image per row*
 - `gutter` - `string` Set the pixel width between the columns and rows. Default: `0px`
+- `origLinks` - `boolean` Set to `true` to wrap each image with an `a` vs. `div` element. The link will point to the `data-src` of the image, or to the `src` if there is no `data-src`. This option and `highresLinks` are mutually exclusive. Default: `false`
 - `highresLinks` - `boolean` Set to `true` to automatically swap out the default image `src` with the `data-highres` attribute once the image is wider than `lowresWidth`. This will also wrap each image with an `a` vs. `div` element. Default: `false`
 - `lowresWidth` - `number` Sets the width where the default image is swapped out for the high resolution image. Default: `500`
 - `rel` - `string` This optional setting useful for lightbox viewers applies a common `rel` attribute to the anchor tags wrapping the images.
@@ -74,6 +75,7 @@ Beyond the basic usage, you can set a number of optional arguments including cal
 		layout: '232',
 		width: '100%',
 		gutter: '5px',
+		origLinks: false,
 		highresLinks: true,
 		lowresWidth: 300,
 		rel: 'gallery-01',

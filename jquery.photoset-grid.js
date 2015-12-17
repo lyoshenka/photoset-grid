@@ -22,6 +22,8 @@
       gutter        : '0px',
 
       // Optional
+      // wrap the images in a vs. div and link to the original images
+      origLinks  : false,
       // wrap the images in a vs. div and link to the data-highres images
       highresLinks  : false,
       // threshold for the lowres image, if container is > swap the data-highres
@@ -127,7 +129,21 @@
 
           // Wrap the images in links to the highres or regular image
           // Otherwise wrap in div.photoset-cell
-          if(options.highresLinks){
+          if(options.origLinks){
+            $images.each(function(){
+              var title = $(this).attr('title') ? ' title="' + $(this).attr('title') + '"' : '',
+                  src = $(this).attr('data-src') || $(this).attr('src');
+              $(this).wrapAll('<a href="' + src + '"' + title + ' class="photoset-cell" />');
+              if(options.borderActive){
+                $(this).wrapAll('<span class="photoset-content-border" />');
+              }
+            });
+
+            // Apply the optional rel
+            if(options.rel){
+              $images.parent().attr('rel', options.rel);
+            }
+          } else if(options.highresLinks){
             $images.each(function(){
               var title;
               // If the image has a title pass it on
@@ -153,7 +169,6 @@
             if(options.rel){
               $images.parent().attr('rel', options.rel);
             }
-
           } else {
             $images.each(function(){
               if(options.borderActive){
